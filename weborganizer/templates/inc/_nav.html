@@ -1,20 +1,16 @@
 {% load static %}
+<nav class="navbar padding_container">
+    <form class="form-inline">
+        <div class="row">
+            <div class="button_nav_div">
+                <a href="{% url 'add' %}"><img class="button1" src="{% static 'image/newtask.png' %}" width="45" height="45"
+                                 href="123"></a>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{% url 'home' %}">Some Company</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href='/'>Главная</a></li>
-        </ul>
-        <span class="navbar-text">
-            <a href="/"><img src="{% static 'phone.jpg' %}" width="30" height="30"></a>
-        </span>
-
-    </div>
+            </div>
+            <div class="button_nav_div">
+                <a href="{% url 'view' %}"><img class="button1" src="{% static 'image/deletetask.png' %}" width="45" height="45"
+                                 href="123"></a>
+            </div>
+        </div>
+    </form>
 </nav>
