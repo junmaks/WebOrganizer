@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{title}} :: {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+<div class="row padding_container">
+
+    <div class="col-sm-4 ">
+        <div class="oval">
+            <a href="{% url 'home' %}" ><p class="text-center text_title">Task</p></a>
+        </div>
+        <div class="col colinner">
+
+            <div class="row-2 oval">
+                <div class="ml-3 mr-3">
+                    <h1 class="text-center small_card_title">Title</h1>
+                </div>
+                <div class="ml-3 mr-3">
+                    <p class="small_card_date">DateTime</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}
