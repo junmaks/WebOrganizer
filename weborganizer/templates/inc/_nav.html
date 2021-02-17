@@ -1,15 +1,17 @@
 {% load static %}
-<nav class="navbar padding_container">
+<nav class="navbar">
     <form class="form-inline">
-        <div class="row">
+        <div class="row padding_container ">
             <div class="button_nav_div">
-                <a href="{% url 'add' %}"><img class="button1" src="{% static 'image/newtask.png' %}" width="45" height="45"
-                                 href="123"></a>
+                <a href="{% url 'home' %}"><img class="button1" src="{% static 'image/home_page.png' %}" width="45"
+                                                height="45"
+                                                href="123"></a>
 
             </div>
             <div class="button_nav_div">
-                <a href="{% url 'view' %}"><img class="button1" src="{% static 'image/deletetask.png' %}" width="45" height="45"
-                                 href="123"></a>
+                <a href="{% url 'add' %}"><img class="button1" src="{% static 'image/newtask.png' %}" width="45"
+                                               height="45"
+                                               href="123"></a>
             </div>
         </div>
     </form>
