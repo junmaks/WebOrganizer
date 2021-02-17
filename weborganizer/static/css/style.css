@@ -34,7 +34,6 @@
     url('../fonts/montserrat-v15-latin_cyrillic-900.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/montserrat-v15-latin_cyrillic-900.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
-
 /*h1 {*/
 /*    font-family: 'Montserrat';*/
 /*    font-size: 30px;*/
@@ -42,17 +41,31 @@
 
 /*}*/
 
+/*.outcol {*/
+/*    !*background-color: #fbf5ef;*!*/
+/*    !*height: 100px;*!*/
+/*    background-color: #fbf5ef;*/
+/*    height: 100%;*/
+/*    padding-left: 100px;*/
+/*    padding-right: 100px;*/
+/*    !*height: 500px;*!*/
 
-P.text_title {
+/*}*/
+
+body {
+    background-color: #fbf5ef;
+    height: 100%;
+}
+
+h1.text_title {
     margin-top: 10px;
     font-family: 'Montserrat';
-    font-size: 2vw;
+    font-size: 20px;
     font-weight: 600;
     /*line-height: 40px;*/
     margin: 0px 0px 0px 0px;
 
 }
-
 
 .navbar {
     background: linear-gradient(180deg, #FDB66F 0%, rgba(255, 242, 229, 0) 100%);
@@ -64,8 +77,17 @@ P.text_title {
 }
 
 .padding_container {
-    padding-left: 150px;
-    padding-right: 150px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.col-sm-4 {
+    background-color: #fbf5ef;
+    height: 100%;
+    padding-left: 50px;
+    padding-right: 50px;
+    height: 700px;
+
 }
 
 .colinner {
@@ -75,11 +97,11 @@ P.text_title {
     /*margin-top: 10px;*/
     /*grid-gutter-width: 30px;*/
     /*height: 100%;*/
-    height: 500px;
+    height: 700px;
     border-radius: 20px;
     border: 1px solid #1b1e21;
     box-shadow: 0 2px #999;
-    overflow-y: auto
+    overflow-y: auto;
 
 }
 
@@ -104,34 +126,6 @@ P.text_title {
     border: 1px solid rgb(0, 0, 0);
     border-radius: 15px;
 }
-
-/*.outcol {*/
-/*    !*background-color: #fbf5ef;*!*/
-/*    !*height: 100px;*!*/
-/*    background-color: #fbf5ef;*/
-/*    height: 100%;*/
-/*    padding-left: 100px;*/
-/*    padding-right: 100px;*/
-/*    !*height: 500px;*!*/
-
-
-/*}*/
-
-.col-sm-4 {
-    background-color: #fbf5ef;
-    height: 100%;
-    padding-left: 50px;
-    padding-right: 50px;
-    height: 500px;
-
-}
-
-
-body {
-    background-color: #fbf5ef;
-    height: 100%;
-}
-
 
 .errorlist {
     color: red;
@@ -162,27 +156,39 @@ body {
     transform: scale(0.8);
 }
 
-
-.oval {
-    border-radius: 50px;
-    height: 50px;
+.oval_title {
+    border-radius: 10px;
+    height: 40px;
+    text-align: center;
     background-color: #FFF2E5;
     margin-top: 10px;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
     margin-bottom: 10px;
+    padding: auto;
     border: 1px solid black;
     box-shadow: 0 2px #999;
-
-
 }
 
+.oval {
+    border-radius: 10px;
+    height: auto;
+    width: auto;
+    background-color: #FFF2E5;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: auto;
+    border: 1px solid black;
+    box-shadow: 0 2px #999;
+}
 
 h1.small_card_title {
     font-family: Montserrat;
     font-style: normal;
     font-weight: 400;
-    font-size: 5px;
+    font-size: 15px;
 }
 
 p.small_card_date {
@@ -190,7 +196,7 @@ p.small_card_date {
     font-family: Montserrat;
     font-style: normal;
     font-weight: 400;;
-    font-size: 5px;
+    font-size: 10px;
 }
 
 A {
@@ -202,3 +208,51 @@ a:hover {
     color: black;
     bgcolor: black;
 }
+
+.add_task {
+    margin-top: 60px;
+    background: linear-gradient(180deg, rgba(255, 122, 0, 0.57) 0%, rgba(255, 184, 0, 0.140719) 66.46%, rgba(255, 184, 0, 0) 100%);
+    padding: 10px;
+    height: 700px;
+    border-radius: 20px;
+    border: 1px solid #1b1e21;
+    box-shadow: 0 2px #999;
+}
+
+.description {
+    height: 70%;
+}
+
+.description_card {
+    border-radius: 10px;
+    background-color: #FFF2E5;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 2%;
+    border: 1px solid black;
+    box-shadow: 0 2px #999;
+    height: 100%;
+    width: 100%;
+
+}
+
+h5.text_title {
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 2px;
+    width: 100%;
+
+}
+
+p.text_title {
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 2px;
+    width: 100%;
+
+}
+
