@@ -9,27 +9,96 @@
 <div class="row padding_container">
 
     <div class="col-sm-4 ">
-        <div class="oval">
-            <a href="{% url 'home' %}" ><h1 class="text-center text_title">Task</h1></a>
+        <div class="oval_title">
+            <h1 class="text-center text_title">Task</h1></a>
         </div>
         <div class="col colinner">
-
+            {% for item in status_task %}
             <div class="row-2 oval">
                 <div class="ml-3 mr-3">
-                    <h1 class="text-center small_card_title">Title</h1>
+                    <h1 class="text-center small_card_title">{{item.title}}</h1>
                 </div>
                 <div class="ml-3 mr-3">
-                    <p class="small_card_date">DateTime</p>
+                    <p class="small_card_date">{{item.time_start}}</p>
                 </div>
             </div>
-
+            {% endfor %}
         </div>
     </div>
 
+
     <div class="col-sm-8">
-        Somevody
+        <div class="col add_task">
+
+
+            <form method="post">
+                {% csrf_token %}
+
+                {% comment %}
+                {{ form.as_p }}
+                {% endcomment %}
+
+
+                <div class="row ">
+                    <!--<div class="col">-->
+                    <!--<div class="oval_title">-->
+                    <label class="text-info" for="{{from.title.id_for_label }}"></label>
+                    <h5 class="text_title">{{form.title}}</h5>
+                    <div class="invalid-feedback">
+                        {{form.title.errors}}
+                    </div>
+                    <!--</div>-->
+                    <!--</div>-->
+                </div>
+
+                <div class="row">
+                    <!--<div class="col-12">-->
+                    <!--<div class="description_card">-->
+                    <label class="text-info" for="{{from.text.id_for_label }}"></label>
+                    <p class="text_title">{{form.text}}</p>
+                    <div class="invalid-feedback">
+                        {{form.text.errors}}
+                    </div>
+                    <!--</div>-->
+                    <!--</div>-->
+                </div>
+
+
+                <div class="row">
+                    <div class="col-6">
+                        <label class="text-info" for="{{from.text.id_for_label }}"></label>
+                        <span>Начало</span>
+                        <p class="text_title">{{form.time_start}}</p>
+                        <div class="invalid-feedback">
+                            {{form.time_start.errors}}
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <span class="ml-3">sssssss ssssssss</span>
+                        <span class="ml-3">sssssss ssssssss</span>
+                    </div>
+
+                    <!-- Force next columns to break to new line -->
+                    <div class="w-100"></div>
+
+                    <div class="col-6">
+                        <label class="text-info" for="{{from.text.id_for_label }}"></label>
+                        <span>Конец</span>
+                        <p class="text_title">{{form.time_start}}</p>
+                        <div class="invalid-feedback">
+                            {{form.time_start.errors}}
+                        </div>
+                    </div>
+                    <!--<div class="col-6 col-sm-3">.col-6 .col-sm-3</div>-->
+                </div>
+
+
+                </div>
+            </form>
+        </div>
     </div>
 
 </div>
+
 
 {% endblock %}
