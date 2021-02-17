@@ -12,8 +12,4 @@ def check_time():
         if time_now > item.time_start and time_now < item.time_end:
             item.task_status = 'Progress'
             item.save()
-            print(True)
-        if time_now > item.time_start and time_now > item.time_end:
-            item.task_status = 'Complete'
-            item.save()
 
