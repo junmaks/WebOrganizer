@@ -1,7 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import CardTask
 from .forms import AddTaskForm
-from datetime import datetime
 from django.utils import timezone
 
 
@@ -22,25 +21,11 @@ def index(request):
 
 
 def view_tasks(request, view_title):
-    if view_title == 'Task':
-        status_task = CardTask.objects.filter(task_status='Task')
-        context = {
-            'status': status_task,
-            'view_title': view_title
-        }
-    if view_title == 'Progress':
-        status_progress = CardTask.objects.filter(task_status='Progress')
-        context = {
-            'status': status_progress,
-            'view_title': view_title
-        }
-    if view_title == 'Complete':
-        status_complete = CardTask.objects.filter(task_status='Complete')
-        context = {
-            'status': status_complete,
-            'view_title': view_title
-        }
-
+    status_complete = CardTask.objects.filter(task_status=view_title)
+    context = {
+        'status': status_complete,
+        'view_title': view_title
+    }
     return render(request=request, template_name='tasks/view_tasks.html', context=context)
 
 
@@ -49,9 +34,11 @@ def add_tasks(request):
 
     if request.method == 'POST':
         form = AddTaskForm(request.POST)
+        print(form)
         if form.is_valid():
-            card_task = form.save()
-            return redirect(card_task)
+            print(form.cleaned_data)
+            form.save()
+            return redirect('home')
     else:
         form = AddTaskForm()
     context = {
@@ -61,5 +48,28 @@ def add_tasks(request):
     return render(request=request, template_name='tasks/add_view_task.html', context=context)
 
 
-def edit_tasks(request):
-    return render(request=request, template_name='tasks/add_view_task.html', context={})
+def edit_tasks(request, view_title, task_id):
+    status_task = CardTask.objects.filter(task_status=view_title)
+    task = get_object_or_404(CardTask, pk=task_id)
+    form = AddTaskForm(request.POST, instance=task)
+    if request.method == 'POST' and 'edit_task.x' in request.POST:
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    elif request.method == 'POST' and 'complete_task.x' in request.POST:
+        task.time_end = timezone.now()
+        task.task_status = 'Complete'
+        task.save()
+        return redirect('home')
+    elif request.method == 'POST' and 'delete_task.x' in request.POST:
+        task.delete()
+        return redirect('home')
+    else:
+        form = AddTaskForm(instance=task)
+    context = {
+        'view_title': view_title,
+        'status_task': status_task,
+        'form': form,
+        'task_id': task_id,
+    }
+    return render(request=request, template_name='tasks/edit_task.html', context=context)
