@@ -9,8 +9,8 @@ from django.utils import timezone
 def index(request):
     all_tasks = CardTask.objects.all()
     status_task = all_tasks.filter(task_status='Task')
-    status_progress = all_tasks.filter(task_status='Progress')
-    status_complete = all_tasks.filter(task_status='Complete')
+    status_progress = all_tasks.filter(task_status='Progress').order_by('time_end')
+    status_complete = all_tasks.filter(task_status='Complete').order_by('time_end')
 
     context = {
         'status_task': status_task,
@@ -21,16 +21,20 @@ def index(request):
 
 
 def view_tasks(request, view_title):
-    status_complete = CardTask.objects.filter(task_status=view_title)
+    # status_complete = CardTask.objects.filter(task_status=view_title)
+    if view_title == 'Task':
+        status_task = CardTask.objects.filter(task_status=view_title).order_by('time_start')
+    else:
+        status_task = CardTask.objects.filter(task_status=view_title).order_by('time_end')
     context = {
-        'status': status_complete,
+        'status': status_task,
         'view_title': view_title
     }
     return render(request=request, template_name='tasks/view_tasks.html', context=context)
 
 
 def add_tasks(request):
-    status_task = CardTask.objects.filter(task_status='Task')
+    status_task = CardTask.objects.filter(task_status='Task').order_by('time_start')
 
     if request.method == 'POST':
         form = AddTaskForm(request.POST)
@@ -49,7 +53,11 @@ def add_tasks(request):
 
 
 def edit_tasks(request, view_title, task_id):
-    status_task = CardTask.objects.filter(task_status=view_title)
+    # status_task = CardTask.objects.filter(task_status=view_title)
+    if view_title == 'Task':
+        status_task = CardTask.objects.filter(task_status=view_title).order_by('time_start')
+    else:
+        status_task = CardTask.objects.filter(task_status=view_title).order_by('time_end')
     task = get_object_or_404(CardTask, pk=task_id)
     form = AddTaskForm(request.POST, instance=task)
     if request.method == 'POST' and 'edit_task.x' in request.POST:
