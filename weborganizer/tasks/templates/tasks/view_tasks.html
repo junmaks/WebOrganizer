@@ -14,19 +14,20 @@
         </div>
         <div class="col colinner">
             {% for item in status %}
-
-            <div class="row-2 oval">
-                <div class="ml-3 mr-3">
-                    <h1 class="text-center small_card_title">{{item.title}}</h1>
+            <a href="{% url 'edit' view_title=item.task_status task_id=item.pk %}">
+                <div class="row-2 oval">
+                    <div class="ml-3 mr-3">
+                        <h1 class="text-center small_card_title">{{item.title|linebreaks|truncatechars_html:15}}</h1>
+                    </div>
+                    <div class="ml-3 mr-3">
+                        {% if item.task_status == 'Task' %}
+                        <p class="small_card_date">{{item.time_start}}</p>
+                        {% else %}
+                        <p class="small_card_date">{{item.time_end}}</p>
+                        {% endif %}
+                    </div>
                 </div>
-                <div class="ml-3 mr-3">
-                    {% if view_title is 'Task' %}
-                    <p class="small_card_date">{{item.time_start}}</p>
-                    {% else %}
-                    <p class="small_card_date">{{item.time_end}}</p>
-                    {% endif %}
-                </div>
-            </div>
+            </a>
             {% endfor %}
 
         </div>

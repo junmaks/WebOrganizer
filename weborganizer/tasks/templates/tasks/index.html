@@ -14,19 +14,21 @@
         </div>
         <div class="col colinner">
             {% for item in status_task %}
-            <div class="row-2 oval">
-                <div class="ml-3 mr-3">
-                    <h1 class="text-center small_card_title">{{item.title}}</h1>
+            <a href="{% url 'edit' view_title='Task' task_id=item.pk %}">
+                <div class="row-2 oval">
+                    <div class="ml-3 mr-3">
+                        <h1 class="text-center small_card_title">{{item.title|linebreaks|truncatechars_html:15}}</h1>
+                    </div>
+                    <div class="ml-3 mr-3">
+                        <p class="small_card_date">{{item.time_start}}</p>
+                    </div>
                 </div>
-                <div class="ml-3 mr-3">
-                    <p class="small_card_date">{{item.time_start}}</p>
-                </div>
-            </div>
+            </a>
             {% endfor %}
         </div>
     </div>
 
-    <div class="col-sm-4 " >
+    <div class="col-sm-4 ">
         <div class="oval_title">
 
             <a href="{% url 'view' view_title='Progress'%}"><h1 class="text-center text_title">Progress</h1></a>
@@ -34,14 +36,16 @@
 
         <div class="col colinner">
             {% for item in status_progress %}
-            <div class="row-2 oval">
-                <div class="ml-3 mr-3">
-                    <h1 class="text-center small_card_title">{{item.title}}</h1>
+            <a href="{% url 'edit' view_title='Progress' task_id=item.pk %}">
+                <div class="row-2 oval">
+                    <div class="ml-3 mr-3">
+                        <h1 class="text-center small_card_title">{{item.title|linebreaks|truncatechars_html:15}}</h1>
+                    </div>
+                    <div class="ml-3 mr-3">
+                        <p class="small_card_date" align="center">{{item.time_end}}</p>
+                    </div>
                 </div>
-                <div class="ml-3 mr-3">
-                    <p class="small_card_date" align="center">{{item.time_end}}</p>
-                </div>
-            </div>
+            </a>
             {% endfor %}
         </div>
     </div>
@@ -52,14 +56,16 @@
         </div>
         <div class="col colinner">
             {% for item in status_complete %}
-            <div class="row-2 oval">
-                <div class="ml-3 mr-3">
-                    <h1 class="text-center small_card_title">{{item.title}}</h1>
+            <a href="{% url 'edit' view_title='Complete' task_id=item.pk%}">
+                <div class="row-2 oval">
+                    <div class="ml-3 mr-3">
+                        <h1 class="text-center small_card_title">{{item.title|linebreaks|truncatechars_html:15}}</h1>
+                    </div>
+                    <div class="ml-3 mr-3">
+                        <p class="small_card_date">{{item.time_end}}</p>
+                    </div>
                 </div>
-                <div class="ml-3 mr-3">
-                    <p class="small_card_date">{{item.time_end}}</p>
-                </div>
-            </div>
+            </a>
             {% endfor %}
         </div>
     </div>
