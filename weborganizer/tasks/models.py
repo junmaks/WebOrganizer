@@ -23,4 +23,4 @@ class CardTask(models.Model):
     class Meta:
         verbose_name = 'Task'
         verbose_name_plural = 'Tasks'
-        # ordering = ('-time_start')
+        ordering = ('-time_start')
