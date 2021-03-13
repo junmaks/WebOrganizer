@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{title}} :: {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="row padding_container">
+
+    <div class="col-sm-4 ">
+        <div class="oval_title">
+            <h1 class="text-center text_title">{{ view_title }}</h1>
+        </div>
+        <div class="col colinner">
+            {% for item in status_task %}
+            <a href="{% url 'edit' view_title=item.task_status task_id=item.pk %}">
+                <div class="row-2 oval">
+                    <div class="ml-3 mr-3">
+                        <h1 class="text-center small_card_title">{{item.title|linebreaks|truncatechars_html:15}}</h1>
+                    </div>
+                    <div class="ml-3 mr-3">
+                        {% if item.task_status == 'Task' %}
+                        <p class="small_card_date">{{item.time_start}}</p>
+                        {% else %}
+                        <p class="small_card_date">{{item.time_end}}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="col-sm-8">
+        <div class="col add_task">
+
+
+            <form method="POST">
+                {% csrf_token %}
+
+                {% comment %}
+                {{ form.as_p }}
+                {% endcomment %}
+
+
+                <div class="row form-group">
+                    <label class="text-info" for="{{from.title.id_for_label }}"></label>
+                    <h5 class="text_title">{{form.title}}</h5>
+                    <div class="invalid-feedback">
+                        {{form.title.errors}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label class="text-info" for="{{from.text.id_for_label }}"></label>
+                    <p class="text_title">{{form.text}}</p>
+                    <div class="invalid-feedback">
+                        {{form.text.errors}}
+                    </div>
+                </div>
+
+
+                <div class="row ">
+
+                    <div class="col-xs time_padding">
+                        <label class="text-info" for="{{from.time_start.id_for_label }}"></label>
+                        <p class="text_title">{{form.time_start}}</p>
+                    </div>
+                    <div class="col-xs invalid-feedback">
+                        {{form.time_start.errors}}
+                    </div>
+                </div>
+                <div class="row ">
+
+                    <div class="col-xs time_padding ">
+                        <label class="text-info" for="{{from.time_end.id_for_label }}"></label>
+                        <p class="text_title">{{form.time_end}}</p>
+                        <div class="invalid-feedback">
+                            {{form.time_end.errors}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row rightpic mr-5">
+                    <input class="button1 ml-2 mr-2" type="image" name="edit_task" value="edit_task"
+                           src="{% static 'image/edit_button.png' %}"
+                           width="45"
+                           height="45"/>
+                    <input class="button1 ml-2 mr-2" type="image" name="complete_task" value="complete_task"
+                                                                    src="{% static 'image/save_button.png' %}"
+                                                                    width="45"
+                                                                    height="45"/>
+                    <input class="button1 ml-2 mr-2" type="image" name="delete_task" value="delete_task"
+                                                                    src="{% static 'image/deletetask.png' %}"
+                                                                    width="45"
+                                                                    height="45"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
